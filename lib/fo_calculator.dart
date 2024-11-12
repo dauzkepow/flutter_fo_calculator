@@ -61,97 +61,157 @@ class _CalculatorState extends State<Calculator> {
   String _selectedOperation = 'Pilihan redaman';
 
   // Result of the calculation
-  double a = 0;
-  String _result = '0';
-  String _result1 = '0';
+  double num1 = 0;
+  double out_srkecil = 0;
+  String out_srkecils = '0';
+  double out_srbesar = 0;
+  String out_srbesars = '0';
+  double out_odcodp = 0;
+  String out_odcodps = '0';
+
+  double _12 = 0;
+  double _14 = 0;
+  double _18 = 0;
+  double _116 = 0;
+
+  String _12s = '0';
+  String _14s = '0';
+  String _18s = '0';
+  String _116s = '0';
+
   String sr1 = '';
   String sr2 = '';
-  String _12 = '0';
-  String _14 = '0';
-  String _18 = '0';
-  String _116 = '0';
+
+  void perhitunganodcodp() {
+    sr1 = '';
+    sr2 = '';
+    out_srkecils = '';
+    out_srbesars = '';
+
+    _12 = out_odcodp - 3.70;
+    _14 = out_odcodp - 7.25;
+    _18 = out_odcodp - 10.38;
+    _116 = out_odcodp - 14.10;
+
+    //rubah ke string
+    out_odcodps = (out_odcodp).toStringAsFixed(2);
+    _12s = (_12).toStringAsFixed(2);
+    _14s = (_14).toStringAsFixed(2);
+    _18s = (_18).toStringAsFixed(2);
+    _116s = (_116).toStringAsFixed(2);
+  }
+
+  void perhitungansr() {
+    out_odcodps = '';
+    _12 = out_srkecil - 3.70;
+    _14 = out_srkecil - 7.25;
+    _18 = out_srkecil - 10.38;
+    _116 = out_srkecil - 14.10;
+
+    //rubah ke string
+    out_srkecils = (out_srkecil).toStringAsFixed(2);
+    out_srbesars = (out_srbesar).toStringAsFixed(2);
+    _12s = (_12).toStringAsFixed(2);
+    _14s = (_14).toStringAsFixed(2);
+    _18s = (_18).toStringAsFixed(2);
+    _116s = (_116).toStringAsFixed(2);
+  }
 
   // Perform the selected operation
   void _calculate() {
-    //double _12 = double.tryParse(_result.text) ?? 0;
-    double num1 = double.tryParse(_num1Controller.text) ?? 0;
-    //double num2 = double.tryParse(_num2Controller.text) ?? 0;
+    num1 = double.tryParse(_num1Controller.text) ?? 0;
 
     setState(() {
       switch (_selectedOperation) {
         case 'ODC 1:4':
-          _result = (num1 - 7.25).toStringAsFixed(2);
+          //_result = (num1 - 7.25).toStringAsFixed(2); //double to string
+          //double _12 = double.parse(out_odcodp); //string to double
+          out_odcodp = num1 - 7.25;
+          perhitunganodcodp();
           break;
         case 'ODC 1:8':
-          _result = (num1 - 10.38).toStringAsFixed(2);
+          out_odcodp = num1 - 10.38;
+          perhitunganodcodp();
           break;
+
         case 'SR 1%':
           sr1 = '1%';
           sr2 = '99%';
-          //_result = (num1 - 22.5).toStringAsFixed(2);
-          a = num1 - 22.5;
-          _result1 = (num1 - 0.25).toStringAsFixed(2);
-          _12 = (a - 4).toStringAsFixed(2);
+          out_srkecil = num1 - 22.5;
+          out_srbesar = num1 - 0.25;
+          perhitungansr();
           break;
+
         case 'SR 2%':
           sr1 = '2%';
           sr2 = '98%';
-          _result = (num1 - 18.7).toStringAsFixed(2);
-          _result1 = (num1 - 0.32).toStringAsFixed(2);
+          out_srkecil = (num1 - 18.7);
+          out_srbesar = (num1 - 0.32);
+          perhitungansr();
           break;
+
         case 'SR 3%':
           sr1 = '3%';
           sr2 = '97%';
-          _result = (num1 - 17.1).toStringAsFixed(2);
-          _result1 = (num1 - 0.35).toStringAsFixed(2);
+          out_srkecil = (num1 - 17.1);
+          out_srbesar = (num1 - 0.35);
+          perhitungansr();
           break;
         case 'SR 5%':
           sr1 = '5%';
           sr2 = '95%';
-          _result = (num1 - 14.6).toStringAsFixed(2);
-          _result1 = (num1 - 0.42).toStringAsFixed(2);
+          out_srkecil = (num1 - 14.6);
+          out_srbesar = (num1 - 0.42);
+          perhitungansr();
           break;
         case 'SR 10%':
           sr1 = '10%';
           sr2 = '90%';
-          _result = (num1 - 10.3).toStringAsFixed(2);
-          _result1 = (num1 - 0.65).toStringAsFixed(2);
+          out_srkecil = (num1 - 10.3);
+          out_srbesar = (num1 - 0.65);
+          perhitungansr();
           break;
         case 'SR 15%':
           sr1 = '15%';
           sr2 = '85%';
-          _result = (num1 - 8.56).toStringAsFixed(2);
-          _result1 = (num1 - 0.9).toStringAsFixed(2);
+          out_srkecil = (num1 - 8.56);
+          out_srbesar = (num1 - 0.9);
+          perhitungansr();
           break;
         case 'SR 20%':
           sr1 = '20%';
           sr2 = '80%';
-          _result = (num1 - 7.26).toStringAsFixed(2);
-          _result1 = (num1 - 1.17).toStringAsFixed(2);
+          out_srkecil = (num1 - 7.26);
+          out_srbesar = (num1 - 1.17);
+          perhitungansr();
           break;
         case 'SR 25%':
           sr1 = '25%';
           sr2 = '75%';
-          _result = (num1 - 6.28).toStringAsFixed(2);
-          _result1 = (num1 - 1.45).toStringAsFixed(2);
+          out_srkecil = (num1 - 6.28);
+          out_srbesar = (num1 - 1.45);
+          perhitungansr();
           break;
         case 'SR 30%':
           sr1 = '30%';
           sr2 = '70%';
-          _result = (num1 - 5.47).toStringAsFixed(2);
-          _result1 = (num1 - 1.75).toStringAsFixed(2);
+          out_srkecil = (num1 - 5.47);
+          out_srbesar = (num1 - 1.75);
+          perhitungansr();
           break;
         case 'SR 35%':
           sr1 = '35%';
           sr2 = '65%';
-          _result = (num1 - 4.79).toStringAsFixed(2);
-          _result1 = (num1 - 2.07).toStringAsFixed(2);
+          out_srkecil = (num1 - 4.79);
+          out_srbesar = (num1 - 2.07);
+          perhitungansr();
           break;
         case 'SR 50%_1:2':
           sr1 = '50%';
           sr2 = '50%';
-          _result = (num1 - 3.7).toStringAsFixed(2);
-          _result1 = (num1 - 3.7).toStringAsFixed(2);
+          out_srkecil = (num1 - 3.7);
+          out_srbesar = (num1 - 3.7);
+          perhitungansr();
           break;
       }
     });
@@ -207,6 +267,17 @@ class _CalculatorState extends State<Calculator> {
                 ElevatedButton(
                   onPressed: () {
                     _num1Controller.clear();
+                    setState(() {
+                      out_odcodps = '';
+                      sr1 = '';
+                      sr2 = '';
+                      out_srkecils = '';
+                      out_srbesars = '';
+                      _12s = '';
+                      _14s = '';
+                      _18s = '';
+                      _116s = '';
+                    });
                   },
                   child: const Text('Reset'),
                 ),
@@ -225,12 +296,17 @@ class _CalculatorState extends State<Calculator> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$sr1 = $_result',
+                  '$sr1 = $out_srkecils',
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '$sr2 = $_result1',
+                  '$out_odcodps',
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '$sr2 = $out_srbesars',
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold),
                 ),
@@ -267,23 +343,23 @@ class _CalculatorState extends State<Calculator> {
             ),
             const SizedBox(height: 17),
 
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$_12',
+                  '$_12s',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '$_14',
+                  '$_14s',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '$_18',
+                  '$_18s',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '$_116',
+                  '$_116s',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
